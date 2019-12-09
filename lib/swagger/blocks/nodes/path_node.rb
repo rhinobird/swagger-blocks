@@ -20,7 +20,8 @@ module Swagger
         end
 
         def server(inline_keys = nil, &block)
-          raise NotSupportedError unless is_openapi_3_0?
+          # FIXME: Temp fix while figuring out why path are sent with version 2.0
+          #raise NotSupportedError unless is_openapi_3_0?
           self.data[:servers] ||= []
           self.data[:servers] << Swagger::Blocks::Nodes::ServerNode.call(version: version, inline_keys: inline_keys, &block)
         end
